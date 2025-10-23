@@ -106,7 +106,7 @@ def _save_batch_to_dataset(lines: List[Dict[str, Union[int, str, bool, None]]], 
 
 
 if __name__ == "__main__":
-    directory_path = '/Users/andrea/Desktop/PhD/Data/Pipeline/reddit/data_trial'
+    directory_path = '/Users/andrea/Desktop/PhD/Data/Pipeline/reddit/data_trial/raw_submissions'
     for file in os.listdir(directory_path):
         if file.endswith('.zst'):
             zst_to_parquet(

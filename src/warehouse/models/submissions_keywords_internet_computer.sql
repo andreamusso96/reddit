@@ -2,7 +2,5 @@
 
 SELECT *
 FROM {{ ref('submissions') }}
-WHERE LOWER(COALESCE(title, '')) LIKE '%internet%'
-OR LOWER(COALESCE(selftext, '')) LIKE '%internet%'
-OR LOWER(COALESCE(title, '')) LIKE '%computer%'
-OR LOWER(COALESCE(selftext, '')) LIKE '%computer%'
+WHERE LOWER(COALESCE(title, '')) LIKE '%theater%'
+OR LOWER(COALESCE(selftext, '')) LIKE '%theater%'
