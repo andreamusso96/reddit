@@ -180,6 +180,8 @@ Consulting/
 temp/
 cache/
 
-data/
+data*/
+downloads/
 test.ipynb
 test.py
+*.torrent
