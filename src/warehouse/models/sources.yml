@@ -1,0 +1,6 @@
+sources:
+  - name: raw
+    tables:
+      - name: submissions
+        external:
+          location: /Users/andrea/Desktop/PhD/Data/Pipeline/reddit/data_trial/parquet_submissions
