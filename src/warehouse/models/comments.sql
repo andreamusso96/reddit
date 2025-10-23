@@ -2,13 +2,13 @@
 
 SELECT  author, 
         subreddit, 
+        subreddit_id, 
         score, 
         created_utc, 
-        title, 
-        id, 
-        num_comments, 
-        selftext, 
-        media, 
+        body, 
+        id,
+        link_id, 
+        parent_id, 
         year, 
         month
-FROM {{ source('raw', 'submissions') }}
+FROM {{ source('raw', 'comments') }}

@@ -39,8 +39,12 @@ def read_lines_zst(file_name: str, reader_window_size: int = 2 ** 31, reader_chu
 
 if __name__ == "__main__":
     import json
-    path = '/Users/andrea/Desktop/PhD/Data/Pipeline/reddit/data_trial/raw_submissions/RS_2005-06.zst'
+    path = '/Users/andrea/Desktop/PhD/Data/Pipeline/reddit/data_trial/raw_comments/RC_2006-06.zst'
+    index = 0
     for line, offset in read_lines_zst(file_name=path):
         line = json.loads(line)
-        print('title: ', line["title"])
-        print('selftext: ', line["selftext"])
+        print('--------------------------------')
+        print(line)
+        index += 1
+        if index > 10:
+            break

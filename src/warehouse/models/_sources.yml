@@ -1,0 +1,73 @@
+sources:
+  - name: raw
+    tables:
+      - name: submissions
+        external:
+          location: /Users/andrea/Desktop/PhD/Data/Pipeline/reddit/data_trial/raw_submissions/parquet
+          using: 'parquet'
+          partitions:
+            - name: year
+              data_type: int
+            - name: month
+              data_type: int
+        columns:
+          - name: author
+            data_type: string
+          - name: subreddit
+            data_type: string
+          - name: score
+            data_type: bigint
+          - name: created_utc
+            data_type: bigint
+          - name: title
+            data_type: string
+          - name: id
+            data_type: string
+          - name: num_comments
+            data_type: bigint
+          - name: selftext
+            data_type: string
+            description: "The text of the submission (in the comments is called the body)"
+          - name: media
+            data_type: boolean
+            description: "Whether the submission has media (images, videos, etc.)"
+          - name: year
+            data_type: int
+          - name: month
+            data_type: int
+
+      - name: comments
+        external:
+          location: /Users/andrea/Desktop/PhD/Data/Pipeline/reddit/data_trial/raw_comments/parquet
+          using: 'parquet'
+          partitions:
+            - name: year
+              data_type: int
+            - name: month
+              data_type: int
+        columns:
+          - name: author
+            data_type: string
+          - name: subreddit
+            data_type: string
+          - name: subreddit_id
+            data_type: string
+          - name: score
+            data_type: bigint
+          - name: created_utc
+            data_type: bigint
+          - name: body
+            data_type: string
+          - name: id
+            data_type: string
+            description: "The ID of the comment"
+          - name: link_id
+            data_type: string
+            description: "The ID of the submission that the comment is replying to"
+          - name: parent_id
+            data_type: string
+            description: "The parent id of a comment which could be another comment or a submission if the comment is a top level comment."
+          - name: year
+            data_type: int
+          - name: month
+            data_type: int
