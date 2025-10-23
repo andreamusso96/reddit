@@ -17,10 +17,12 @@ def download_selected_files_from_torrent(torrent_path: str, download_dir: str, s
     cmd = [
         "aria2c",
         "--bt-remove-unselected-file=true",
+        "--max-download-limit=100M",              # per-download unlimited
+        "--bt-max-peers=200",      
         "--file-allocation=none",
         "--seed-ratio=0",
         "--seed-time=0",
-        "--max-overall-download-limit=20M",
+        "--max-overall-download-limit=0",
         f"--select-file={select_indices}",
         f"--dir={os.path.abspath(download_dir)}",
         torrent_path
