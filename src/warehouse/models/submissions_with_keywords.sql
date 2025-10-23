@@ -1,6 +1,14 @@
 {{ config(materialized='table') }}
 
+{% set keywords = ['theater', 'movie'] %}
+
 SELECT *
 FROM {{ ref('submissions') }}
-WHERE LOWER(COALESCE(title, '')) LIKE '%theater%'
-OR LOWER(COALESCE(selftext, '')) LIKE '%theater%'
+WHERE
+{% for keyword in keywords %}
+    {% if not loop.first %}
+    OR
+    {% endif %}
+    LOWER(COALESCE(title, '')) LIKE '%{{ keyword }}%'
+    OR LOWER(COALESCE(selftext, '')) LIKE '%{{ keyword }}%'
+{% endfor %}
