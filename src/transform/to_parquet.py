@@ -1,5 +1,4 @@
-from re import M
-from typing import Any, Dict, List, Tuple, Union
+from typing import Any, Dict, List, Union
 
 import logging
 import os
@@ -7,6 +6,7 @@ from pydantic import BaseModel, ValidationError
 import pyarrow as pa
 import pyarrow.parquet as pq
 import gc
+from datetime import datetime, timezone
 
 from zst_io import read_lines_zst
 
@@ -18,7 +18,7 @@ ch.setFormatter(formatter)
 logger.addHandler(ch)
 
 
-def zst_to_parquet(zst_file_path: str, parquet_folder_path: str, parquet_file_name: str):
+def zst_to_parquet(zst_file_path: str, parquet_folder_path: str):
     logger.info(f'Converting {zst_file_path} to parquet files in {parquet_folder_path}')
 
     file_size_zst_bytes = os.stat(zst_file_path).st_size
@@ -26,7 +26,7 @@ def zst_to_parquet(zst_file_path: str, parquet_folder_path: str, parquet_file_na
 
     bad_line_count = 0
     file_lines = 0
-    parquet_file_id = 0
+    batch_id = 0
 
     lines = []
     for line, file_bytes_processed in read_lines_zst(file_name=zst_file_path):
@@ -43,16 +43,16 @@ def zst_to_parquet(zst_file_path: str, parquet_folder_path: str, parquet_file_na
 
         # Save the parquet file
         if file_lines % max_lines_parquet_file == 0:
-            logger.info(f'SAVING FILE: {parquet_file_id}')
-            _save_to_parquet_file(lines=lines, parquet_file_path=f'{parquet_folder_path}/{parquet_file_name}_{parquet_file_id:03d}.parquet.snappy')
-            parquet_file_id += 1
+            logger.info(f'SAVING BATCH: {batch_id}')
+            _save_batch_to_dataset(lines=lines, dataset_path=parquet_folder_path)
+            batch_id += 1
             del lines
             gc.collect()
             lines = []
 
     # Save the last parquet file
-    logger.info(f'SAVING FILE: {parquet_file_id}')
-    _save_to_parquet_file(lines=lines, parquet_file_path=f'{parquet_folder_path}/{parquet_file_name}_{parquet_file_id:03d}.parquet.snappy')
+    logger.info(f'SAVING BATCH: {batch_id}')
+    _save_batch_to_dataset(lines=lines, dataset_path=parquet_folder_path)
     logger.info(f'Finished converting {zst_file_path} to parquet files in {parquet_folder_path}')
 
 
@@ -70,6 +70,7 @@ class RedditSubmission(BaseModel):
 
 def _extract_line_data(line_str: str) -> Dict[str, Any]:
     reddit_submission = RedditSubmission.model_validate_json(line_str)
+    dt = datetime.fromtimestamp(reddit_submission.created_utc, tz=timezone.utc)
     line_parse = {
         'author': reddit_submission.author,
         'subreddit': reddit_submission.subreddit,
@@ -79,12 +80,13 @@ def _extract_line_data(line_str: str) -> Dict[str, Any]:
         'id': reddit_submission.id,
         'num_comments': reddit_submission.num_comments,
         'selftext': reddit_submission.selftext,
-        'media': False if reddit_submission.media is None else True
+        'media': False if reddit_submission.media is None else True,
+        'year': dt.year,
+        'month': dt.month
     }
     return line_parse
 
-
-def _save_to_parquet_file(lines: List[Dict[str, Union[int, str, bool, None]]], parquet_file_path: str):
+def _save_batch_to_dataset(lines: List[Dict[str, Union[int, str, bool, None]]], dataset_path: str):
     schema = pa.schema([
         ('author', pa.string()),
         ('subreddit', pa.string()),
@@ -94,10 +96,13 @@ def _save_to_parquet_file(lines: List[Dict[str, Union[int, str, bool, None]]], p
         ('id', pa.string()),
         ('num_comments', pa.int64()),
         ('selftext', pa.string()),
-        ('media', pa.bool_())
+        ('media', pa.bool_()),
+        ('year', pa.int32()),
+        ('month', pa.int32())
     ])
+
     table = pa.Table.from_pylist(lines, schema=schema)
-    pq.write_table(table, parquet_file_path)
+    pq.write_to_dataset(table, root_path=dataset_path, partition_cols=['year', 'month'], compression='snappy', existing_data_behavior='overwrite_or_ignore')
 
 
 if __name__ == "__main__":
@@ -106,6 +111,5 @@ if __name__ == "__main__":
         if file.endswith('.zst'):
             zst_to_parquet(
                 zst_file_path=os.path.join(directory_path, file),
-                parquet_folder_path=os.path.join(directory_path, 'parquet'),
-                parquet_file_name=file.replace('.zst', ''),
+                parquet_folder_path=os.path.join(directory_path, 'parquet')
             )

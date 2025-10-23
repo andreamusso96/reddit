@@ -1,0 +1,15 @@
+warehouse:        
+  target: local
+  outputs:
+    local:
+      type: spark
+      method: session
+      schema: default     
+      host: NA            
+      threads: 4            
+      server_side_parameters:
+        "spark.master": "local[8]"
+        "spark.driver.memory": "4g"
+        "spark.sql.catalogImplementation": "hive"
+        "spark.sql.warehouse.dir": "file:/Users/andrea/Desktop/PhD/Data/Pipeline/reddit/data_trial/spark/warehouse"
+        "spark.driver.extraJavaOptions": "-Dderby.system.home=/Users/andrea/Desktop/PhD/Data/Pipeline/reddit/data_trial/spark/metastore"
