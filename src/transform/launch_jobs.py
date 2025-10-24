@@ -7,7 +7,7 @@ def extract_zst_file_names(folder_path: str) -> List[str]:
     file_names = [f for f in file_names if f.endswith('.zst')]
     return file_names
 
-def _launch_jobs(zst_folder_path: str, parquet_folder_path: str, cluster: bool):
+def _launch_jobs(zst_folder_path: str, parquet_folder_path: str, cluster: bool, time_str: str):
     file_names = extract_zst_file_names(folder_path=zst_folder_path)
     file_names = sorted(file_names)
     file_names = file_names[-2:] # TODO: remove this after testing
@@ -16,7 +16,7 @@ def _launch_jobs(zst_folder_path: str, parquet_folder_path: str, cluster: bool):
     for file_name in file_names:
         zst_file_path = os.path.join(zst_folder_path, file_name)
         if cluster:
-            os.system(f'sbatch {bash_script_path} {zst_file_path} {parquet_folder_path}')
+            os.system(f'sbatch --time={time_str} {bash_script_path} {zst_file_path} {parquet_folder_path}')
         else:
             os.system(f'sh {bash_script_path} {zst_file_path} {parquet_folder_path}')
 
@@ -32,7 +32,7 @@ def launch_submissions_jobs(cluster: bool):
     print(f'Launching submissions jobs on {cluster}')
     print(f'ZST folder path: {zst_folder_path}')
     print(f'Parquet folder path: {parquet_folder_path}')
-    _launch_jobs(zst_folder_path=zst_folder_path, parquet_folder_path=parquet_folder_path, cluster=cluster)
+    _launch_jobs(zst_folder_path=zst_folder_path, parquet_folder_path=parquet_folder_path, cluster=cluster, time_str='01:00:00')
 
 
 def launch_comments_jobs(cluster: bool):
@@ -46,7 +46,7 @@ def launch_comments_jobs(cluster: bool):
     print(f'Launching comments jobs on {cluster}')
     print(f'ZST folder path: {zst_folder_path}')
     print(f'Parquet folder path: {parquet_folder_path}')
-    _launch_jobs(zst_folder_path=zst_folder_path, parquet_folder_path=parquet_folder_path, cluster=cluster)
+    _launch_jobs(zst_folder_path=zst_folder_path, parquet_folder_path=parquet_folder_path, cluster=cluster, time_str='03:30:00')
 
 
 def launch_jobs(cluster: bool):
