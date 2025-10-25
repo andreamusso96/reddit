@@ -11,5 +11,5 @@ warehouse:
         "spark.master": "local[8]"
         "spark.driver.memory": "4g"
         "spark.sql.catalogImplementation": "hive"
-        "spark.sql.warehouse.dir": "file:/Users/andrea/Desktop/PhD/Data/Pipeline/reddit/data_trial/spark/warehouse"
-        "spark.driver.extraJavaOptions": "-Dderby.system.home=/Users/andrea/Desktop/PhD/Data/Pipeline/reddit/data_trial/spark/metastore"
+        "spark.sql.warehouse.dir": "{{ env_var('SPARK_WAREHOUSE_DIR') }}"
+        "spark.driver.extraJavaOptions": "-Dderby.system.home={{ env_var('DERBY_SYSTEM_HOME') }}"

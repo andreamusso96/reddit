@@ -3,7 +3,7 @@ sources:
     tables:
       - name: submissions
         external:
-          location: /Users/andrea/Desktop/PhD/Data/Pipeline/reddit/data_trial/raw_submissions/parquet
+          location: "{{ env_var('RAW_SUBMISSIONS_PARQUET_DIR') }}"
           using: 'parquet'
           partitions:
             - name: year
@@ -38,7 +38,7 @@ sources:
 
       - name: comments
         external:
-          location: /Users/andrea/Desktop/PhD/Data/Pipeline/reddit/data_trial/raw_comments/parquet
+          location: "{{ env_var('RAW_COMMENTS_PARQUET_DIR') }}"
           using: 'parquet'
           partitions:
             - name: year
