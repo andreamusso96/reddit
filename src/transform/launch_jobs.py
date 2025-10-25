@@ -24,7 +24,7 @@ def _launch_jobs(zst_folder_path: str, parquet_folder_path: str, cluster: bool, 
 def launch_submissions_jobs(cluster: bool):
     if cluster:
         zst_folder_path = '/cluster/work/coss/anmusso/reddit/submissions'
-        parquet_folder_path = '/cluster/work/coss/anmusso/reddit_parquet/submissions'
+        parquet_folder_path = '/cluster/work/gess/coss/anmusso/reddit_parquet/submissions'
     else:
         zst_folder_path = '/Users/andrea/Desktop/PhD/Data/Pipeline/reddit/data_trial/raw_submissions'
         parquet_folder_path = '/Users/andrea/Desktop/PhD/Data/Pipeline/reddit/data_trial/raw_submissions/parquet'
@@ -38,7 +38,7 @@ def launch_submissions_jobs(cluster: bool):
 def launch_comments_jobs(cluster: bool):
     if cluster:
         zst_folder_path = '/cluster/work/coss/anmusso/reddit/comments'
-        parquet_folder_path = '/cluster/work/coss/anmusso/reddit_parquet/comments'
+        parquet_folder_path = '/cluster/work/gess/coss/anmusso/reddit_parquet/comments'
     else:
         zst_folder_path = '/Users/andrea/Desktop/PhD/Data/Pipeline/reddit/data_trial/raw_comments'
         parquet_folder_path = '/Users/andrea/Desktop/PhD/Data/Pipeline/reddit/data_trial/raw_comments/parquet'

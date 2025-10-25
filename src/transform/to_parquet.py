@@ -65,7 +65,7 @@ def _save_submissions_batch_to_dataset(lines: List[Dict[str, Any]], dataset_path
     ])
 
     table = pa.Table.from_pylist(lines, schema=schema)
-    pq.write_to_dataset(table, root_path=dataset_path, partition_cols=['year', 'month'], compression='snappy', existing_data_behavior='overwrite_or_ignore')
+    pq.write_to_dataset(table, root_path=dataset_path, partition_cols=['year', 'month'], compression='SNAPPY', existing_data_behavior='overwrite_or_ignore')
 
 
 def zst_submissions_to_parquet(zst_file_path: str, parquet_folder_path: str):
