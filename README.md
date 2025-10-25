@@ -9,6 +9,10 @@ How to run the job on spark (test run):
 `module stack/2025-06 gcc/12.2.0 python/3.13.0 openjdk/17.0.11_9`
 - Activate the venv: 
 `source reddit_env/bin/activate`
+- Pull the new code
+`cd reddit`
+then 
+`git pull`
 - Run an interactive job
 `srun --pty bash`
 - Activate the environment variables
