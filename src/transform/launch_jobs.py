@@ -10,7 +10,7 @@ def extract_zst_file_names(folder_path: str) -> List[str]:
 def _launch_jobs(zst_folder_path: str, parquet_folder_path: str, cluster: bool, time_str: str):
     file_names = extract_zst_file_names(folder_path=zst_folder_path)
     file_names = sorted(file_names)
-    file_names = file_names[-2:] # TODO: remove this after testing
+    file_names = file_names[:2] # TODO: remove this after testing
     bash_script_path = os.path.join(os.path.dirname(__file__), 'run_job.sh')
     os.system(f'chmod +x {bash_script_path}')
     for file_name in file_names:
@@ -24,7 +24,7 @@ def _launch_jobs(zst_folder_path: str, parquet_folder_path: str, cluster: bool, 
 def launch_submissions_jobs(cluster: bool):
     if cluster:
         zst_folder_path = '/cluster/work/coss/anmusso/reddit/submissions'
-        parquet_folder_path = '/cluster/work/gess/coss/anmusso/reddit_parquet/submissions'
+        parquet_folder_path = '/cluster/work/gess/coss/users/anmusso/reddit_parquet/submissions'
     else:
         zst_folder_path = '/Users/andrea/Desktop/PhD/Data/Pipeline/reddit/data_trial/raw_submissions'
         parquet_folder_path = '/Users/andrea/Desktop/PhD/Data/Pipeline/reddit/data_trial/raw_submissions/parquet'
@@ -38,7 +38,7 @@ def launch_submissions_jobs(cluster: bool):
 def launch_comments_jobs(cluster: bool):
     if cluster:
         zst_folder_path = '/cluster/work/coss/anmusso/reddit/comments'
-        parquet_folder_path = '/cluster/work/gess/coss/anmusso/reddit_parquet/comments'
+        parquet_folder_path = '/cluster/work/gess/coss/users/anmusso/reddit_parquet/comments'
     else:
         zst_folder_path = '/Users/andrea/Desktop/PhD/Data/Pipeline/reddit/data_trial/raw_comments'
         parquet_folder_path = '/Users/andrea/Desktop/PhD/Data/Pipeline/reddit/data_trial/raw_comments/parquet'
