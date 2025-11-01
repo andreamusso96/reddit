@@ -1,4 +1,4 @@
-{{ config(materialized='table') }}
+{{ config(materialized='table', file_format='parquet') }}
 
 {% set keywords = ['theater', 'movie'] %}
 

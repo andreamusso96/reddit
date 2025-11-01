@@ -1,4 +1,4 @@
-{{ config(materialized='table') }}
+{{ config(materialized='table', file_format='parquet') }}
 
 SELECT  s.author AS author_submission,
         s.subreddit,
