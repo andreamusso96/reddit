@@ -6,10 +6,10 @@ warehouse:
       method: session
       schema: default     
       host: NA            
-      threads: 4            
+      threads: 1            
       server_side_parameters:
-        "spark.master": "local[8]"
-        "spark.driver.memory": "4g"
+        "spark.master": "local[1]"
+        "spark.driver.memory": "1g"
         "spark.sql.catalogImplementation": "hive"
         "spark.sql.warehouse.dir": "{{ env_var('SPARK_WAREHOUSE_DIR') }}"
         "spark.hadoop.hive.metastore.warehouse.dir": "{{ env_var('SPARK_WAREHOUSE_DIR') }}"
