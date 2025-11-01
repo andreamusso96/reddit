@@ -11,4 +11,4 @@ SELECT  author,
         media, 
         year, 
         month
-FROM parquet.`{{ var("RAW_SUBMISSIONS_PARQUET_DIR") }}`
+FROM parquet.`{{ env_var("RAW_SUBMISSIONS_PARQUET_DIR") }}`
