@@ -6,7 +6,7 @@ This project aims to understand how people heal from plantar fasciitis by analyz
 How to run the job on spark (test run):
 - Login to the euler
 - Load the appropriate modules:
-`module load stack/2025-06 gcc/12.2.0 python/3.13.0 openjdk/17.0.11_9`
+`module load stack/2024-06 gcc/12.2.0 python/3.11.6 openjdk/11.0.20.1_1`
 - Activate the venv: 
 `source reddit_env/bin/activate`
 - Pull the new code
@@ -39,3 +39,13 @@ Once this runs with the dummy data (just 2005 and 2006 for both comments and sub
 The only issue is that the scratch has max 2.5TB memory, so I need to figure out what to do with that. 
 
 
+# Installing the enviornment to run this on the cluster
+First load the software:
+`module load stack/2024-06 gcc/12.2.0 python/3.11.6 openjdk/11.0.20.1_1`
+Next create a venv
+`python -m venv reddit_env`
+Activate venv
+`source reddit_env/bin/activate`
+Install requirements
+`pip install --upgrade pip`
+`pip install dbt-core dbt-spark[session]`
