@@ -1,4 +1,4 @@
-{{ config(materialized='view') }}
+{{ config(materialized='table', file_format='parquet') }}
 
 SELECT  author, 
         subreddit, 
