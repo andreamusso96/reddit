@@ -12,4 +12,5 @@ warehouse:
         "spark.driver.memory": "4g"
         "spark.sql.catalogImplementation": "hive"
         "spark.sql.warehouse.dir": "{{ env_var('SPARK_WAREHOUSE_DIR') }}"
+        "spark.hadoop.hive.metastore.warehouse.dir": "{{ env_var('SPARK_WAREHOUSE_DIR') }}"
         "spark.driver.extraJavaOptions": "-Dderby.system.home={{ env_var('DERBY_SYSTEM_HOME') }}"

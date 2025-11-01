@@ -1,4 +1,4 @@
-{{ config(materialized='table', file_format='parquet', location_root='file:/cluster/scratch/anmusso/reddit/dbt_external') }}
+{{ config(materialized='table', file_format='parquet') }}
 
 {% set keywords = ['theater', 'movie'] %}
 
