@@ -1,4 +1,4 @@
-{{ config(materialized='table', file_format='parquet') }}
+{{ config(materialized='view') }}
 
 SELECT  author, 
         subreddit, 
@@ -11,4 +11,4 @@ SELECT  author,
         media, 
         year, 
         month
-FROM parquet.`{{ env_var("RAW_SUBMISSIONS_PARQUET_DIR") }}`
+FROM {{ source('raw', 'submissions') }}
