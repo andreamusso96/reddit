@@ -65,8 +65,8 @@ I ran this query with the keywords: 'plantar fasciitis', 'plantar fascitis', 'he
 
 I used these specs for the job:
 ```
-#SBATCH --time=03:00:00
-#SBATCH --cpus-per-task=16      <--- NOTE HERE WE USED MORE CORES    
+#SBATCH --time=03:30:00
+#SBATCH --cpus-per-task=32      <--- NOTE HERE WE USED MORE CORES    
 #SBATCH --mem-per-cpu=4GB         
 ```
 
@@ -77,6 +77,6 @@ RAW_COMMENTS_PARQUET_DIR="/cluster/work/gess/coss/users/anmusso/reddit_parquet/c
 I wrote the output to "/cluster/scratch/anmusso/"
 
 The job took **X minutes** as a whole. Here is the breakdown:
-- 1716.92s (28.6 minutes) for submissions_with_keywords
+- 936 for submissions_with_keywords
 - X for comments_and_submissions_with_keywords
 
