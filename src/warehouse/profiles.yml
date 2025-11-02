@@ -8,8 +8,8 @@ warehouse:
       host: NA            
       threads: 1            
       server_side_parameters:
-        "spark.master": "local[2]"
-        "spark.driver.memory": "1g"
+        "spark.master": "local[ {{ env_var('SPARK_LOCAL_CORES') }}]"
+        "spark.driver.memory": "{{ env_var('SPARK_DRIVER_MEMORY') }}"
         "spark.sql.catalogImplementation": "hive"
         "spark.sql.warehouse.dir": "{{ env_var('SPARK_WAREHOUSE_DIR') }}"
         "spark.hadoop.hive.metastore.warehouse.dir": "{{ env_var('SPARK_WAREHOUSE_DIR') }}"
