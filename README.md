@@ -54,7 +54,7 @@ I wrote the output to "/cluster/scratch/anmusso/"
 
 The job took **55 minutes**.
 
-## submissions_with_keywords + comments_and_submissions_with_keywords
+### submissions_with_keywords + comments_and_submissions_with_keywords
 
 The combination of these two queries does the following:
 1) We look through each submission and checks if it contains some keywords. Filter out the submissions with a given keyword and write them in a table. 
