@@ -77,6 +77,7 @@ RAW_COMMENTS_PARQUET_DIR="/cluster/work/gess/coss/users/anmusso/reddit_parquet/c
 I wrote the output to "/cluster/scratch/anmusso/"
 
 The job took **X minutes** as a whole. Here is the breakdown:
-- 936 for submissions_with_keywords
-- X for comments_and_submissions_with_keywords
+- 897s (15 minutes) for submissions_with_keywords
+- 2819s (47 minutes) for comments_and_submissions_with_keywords
 
+I found 37111 submissions with 348353 total comments. 
