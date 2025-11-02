@@ -15,4 +15,4 @@ source .env
 set + a
 
 dbt debug
-dbt run
+dbt run --select submissions submissions_with_keywords
