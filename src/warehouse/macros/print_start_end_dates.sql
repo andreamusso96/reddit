@@ -1,6 +1,6 @@
 {% macro print_start_end_dates(model) %}
   {% set rel = ref(model) %}
-  {% set res = run_query("select MAX(created_utc) as max_created_utc, MIN(created_utc) as min_created_utc from " ~ rel) %}
+  {% set res = run_query("select timestamp_seconds(MAX(created_utc)) as max_created_utc, timestamp_seconds(MIN(created_utc)) as min_created_utc from " ~ rel) %}
   {% if execute and res is not none %}
     {% set max_created_utc = res.rows[0][0] %}
     {% set min_created_utc = res.rows[0][1] %}
