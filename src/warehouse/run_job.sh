@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=dbt_spark_local
-#SBATCH --time=03:00:00
-#SBATCH --cpus-per-task=16          
+#SBATCH --time=03:30:00
+#SBATCH --cpus-per-task=32          
 #SBATCH --mem-per-cpu=4GB         
 #SBATCH --output=slurm-%j.out
 
@@ -23,3 +23,4 @@ dbt run-operation stage_external_sources --vars "ext_full_refresh: true"
 dbt run --select submissions comments submissions_with_keywords comments_and_submissions_with_keywords
 dbt run-operation print_rowcount --args '{"model":"submissions_with_keywords"}'
 dbt run-operation print_start_end_dates --args '{"model":"submissions_with_keywords"}'
+dbt run-operation print_rowcount --args '{"model":"comments_and_submissions_with_keywords"}'
