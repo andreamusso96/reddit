@@ -7,7 +7,9 @@
 
 
 module load stack/2024-06 gcc/12.2.0 python/3.11.6 openjdk/11.0.20.1_1
-source reddit_env/bin/activate
+source /cluster/home/anmusso/reddit_env/bin/activate
+
+cd /cluster/home/anmusso/reddit/src/warehouse
 
 set -a
 source .env
