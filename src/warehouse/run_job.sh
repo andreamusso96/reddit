@@ -15,6 +15,7 @@ source .env
 set + a
 
 dbt debug
+dbt run-operation stage_external_sources
 dbt run --select submissions submissions_with_keywords
 dbt run-operation print_rowcount --args '{"model":"submissions_with_keywords"}'
 dbt run-operation print_start_end_dates --args '{"model":"submissions_with_keywords"}'
