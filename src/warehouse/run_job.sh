@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=dbt_spark_local
 #SBATCH --time=03:00:00
-#SBATCH --cpus-per-task=8          
+#SBATCH --cpus-per-task=16          
 #SBATCH --mem-per-cpu=4GB         
 #SBATCH --output=slurm-%j.out
 
