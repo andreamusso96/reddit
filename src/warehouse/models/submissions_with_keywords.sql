@@ -1,6 +1,6 @@
 {{ config(materialized='table', file_format='parquet') }}
 
-{% set keywords = ['theater', 'movie'] %}
+{% set keywords = ['plantar fasciitis', 'plantar fascitis', 'heel pain', 'plantar fasciosis'] %}
 
 SELECT *
 FROM {{ ref('submissions') }}
