@@ -17,7 +17,7 @@ echo "RAW_SUBMISSIONS_PARQUET_DIR: $RAW_SUBMISSIONS_PARQUET_DIR"
 echo "RAW_COMMENTS_PARQUET_DIR: $RAW_COMMENTS_PARQUET_DIR"
 
 dbt debug
-dbt run-operation stage_external_sources
+dbt run-operation stage_external_sources --vars "ext_full_refresh: true"
 dbt run --select submissions submissions_with_keywords
 dbt run-operation print_rowcount --args '{"model":"submissions_with_keywords"}'
 dbt run-operation print_start_end_dates --args '{"model":"submissions_with_keywords"}'
