@@ -9,10 +9,12 @@
 module load stack/2024-06 gcc/12.2.0 python/3.11.6 openjdk/11.0.20.1_1
 source reddit_env/bin/activate
 
-cd src/warehouse
 set -a
 source .env
 set + a
+
+echo "RAW_SUBMISSIONS_PARQUET_DIR: $RAW_SUBMISSIONS_PARQUET_DIR"
+echo "RAW_COMMENTS_PARQUET_DIR: $RAW_COMMENTS_PARQUET_DIR"
 
 dbt debug
 dbt run-operation stage_external_sources
