@@ -103,8 +103,19 @@ I made some tweaks to the query to solve some issues:
 - Before I was joining the full filtered submission table to the comments table. This made a broadcast strategy hard because the full submission table is not that small. Now, I am just joining the ids of the submission. 
 - Before I was outputting a shift ton of files when writing the comments_and_submissions_with_keywords table to disk. I think this is because each task was writing its own file. Now, I repartition to 32 before writing to limit the number of files. 
 
-The job took **1.15 minutes** as a whole. Here is the breakdown:
+The job took **1hr 15 minutes** as a whole. Here is the breakdown:
 - 1112s (18.5 minutes) for submissions_with_keywords
 - 3394s (X minutes) for comments_and_submissions_with_keywords
 
-I found X submissions with X total comments. 
+Ran with keywords
+'income gap', 'wealth inequality', 'minimum wage', 'living wage', 'progressive taxes'
+The job took **2hr 4 minutes** as a whole. Here is the breakdown:
+- 1234.61s (20 minutes) for submissions_with_keywords
+- 6203.28s (100 minutes) for comments_and_submissions_with_keywords
+
+Ran with keywords
+'immigrants', 'border security', 'border wall'
+The job took **X** as a whole. Here is the breakdown:
+- 1234.61s (20 minutes) for submissions_with_keywords
+- 6203.28s (100 minutes) for comments_and_submissions_with_keywords
+
