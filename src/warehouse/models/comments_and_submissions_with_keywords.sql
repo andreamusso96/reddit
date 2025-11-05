@@ -4,7 +4,7 @@ WITH submission_ids AS (
     SELECT id
     FROM {{ ref('submissions_with_keywords')}}
 ),
-comments_and_submissions AS (
+filtered_comments AS (
     SELECT  /*+ BROADCAST(submission_ids) */
             s.id AS id_submission,
             c.id AS id_comment,
@@ -18,4 +18,4 @@ comments_and_submissions AS (
     ON s.id = c.link_id
 )
 SELECT /*+ REPARTITION(32) */  *
-FROM comments_and_submissions
+FROM filtered_comments
