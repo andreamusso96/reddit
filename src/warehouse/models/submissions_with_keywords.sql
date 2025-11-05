@@ -1,6 +1,6 @@
 {{ config(materialized='table', file_format='parquet') }}
 
-{% set keywords = ['plantar fasciitis', 'plantar fascitis', 'heel pain', 'plantar fasciosis'] %}
+{% set keywords = ['pro-life', 'pro-choice', 'reproductive rights', 'pregnancy termination'] %}
 
 SELECT *
 FROM {{ ref('submissions') }}

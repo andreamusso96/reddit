@@ -24,3 +24,4 @@ dbt run --select submissions comments submissions_with_keywords comments_and_sub
 dbt run-operation print_rowcount --args '{"model":"submissions_with_keywords"}'
 dbt run-operation print_start_end_dates --args '{"model":"submissions_with_keywords"}'
 dbt run-operation print_rowcount --args '{"model":"comments_and_submissions_with_keywords"}'
+python /cluster/home/anmusso/reddit/src/output/save_table_to_cluster.py 1
