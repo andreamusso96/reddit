@@ -10,6 +10,7 @@ def _move_table_to_shared_folder(table_read_dir: str, table_write_path: str):
     con.sql(q).write_parquet(table_write_path)
 
 def move_table_to_shared_folder(file_id):
+    print(f'Moving table to shared folder for file {file_id}')
     read_dir = '/cluster/scratch/anmusso/reddit/spark/warehouse/comments_and_submissions_with_keywords/'
     write_path = f'/cluster/work/gess/coss/users/anmusso/keyword_output/output_{file_id}.parquet'
     _move_table_to_shared_folder(table_read_dir=read_dir, table_write_path=write_path)
