@@ -1,6 +1,6 @@
 {{ config(materialized='table', file_format='parquet') }}
 
-{% set keywords = ['food stamps', 'Medicaid', 'unemployment benefits', 'welfare spending'] %}
+{% set keywords = ['same-sex marriage', 'marriage equality', 'LGBT', 'gender identity', 'sexual orientation'] %}
 
 WITH filtered_submissions AS (
     SELECT *
