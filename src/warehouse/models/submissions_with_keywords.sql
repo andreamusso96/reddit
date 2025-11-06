@@ -1,6 +1,6 @@
 {{ config(materialized='table', file_format='parquet') }}
 
-{% set keywords = ['immigrants', 'border security', 'border wall'] %}
+{% set keywords = ['food stamps', 'Medicaid', 'unemployment benefits', 'welfare spending'] %}
 
 WITH filtered_submissions AS (
     SELECT *

@@ -115,7 +115,7 @@ The job took **2hr 4 minutes** as a whole. Here is the breakdown:
 
 Ran with keywords
 'immigrants', 'border security', 'border wall'
-The job took **X** as a whole. Here is the breakdown:
-- 1234.61s (20 minutes) for submissions_with_keywords
-- 6203.28s (100 minutes) for comments_and_submissions_with_keywords
+The job took **1hr 20 minutes** as a whole. Here is the breakdown:
+- 719.61s (12 minutes) for submissions_with_keywords
+- 4077.28s (48 minutes) for comments_and_submissions_with_keywords
 
