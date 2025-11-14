@@ -6,8 +6,8 @@
 WITH normalized_comments AS (
     SELECT *, LOWER(COALESCE(body, '')) AS body_lc
     FROM {{ ref('comments') }}
-)
-WITH filtered_comments AS (
+),
+filtered_comments AS (
     SELECT *
     FROM normalized_comments
     WHERE (
