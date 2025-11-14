@@ -20,4 +20,4 @@ echo "RAW_COMMENTS_PARQUET_DIR: $RAW_COMMENTS_PARQUET_DIR"
 
 dbt debug
 dbt run-operation stage_external_sources --vars "ext_full_refresh: true"
-dbt run --select submissions comments submissions_with_keywords comments_and_submissions_with_keywords
+dbt run --select comments comments_with_keywords
