@@ -1,7 +1,7 @@
 {{ config(materialized='table', file_format='parquet') }}
 
 {% set like_keywords = ['gpt', 'artificial intelligence', 'gemini', 'claude', 'llm', 'large language model', 'deepseek', 'bard'] %}
-{% set full_word_keywords = ['ai', 'bot']}
+{% set full_word_keywords = ['ai', 'bot'] %}
 
 WITH normalized_comments AS (
     SELECT *, LOWER(COALESCE(body, '')) AS body_lc
